@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta charset="utf-8"
+	<title>Ver si funciona el linenums</title>
+
+	<!--Estilos-->
+	    <link href="prettify/prettify.css" type="text/css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+
+<pre class="prettify">
+	
+#include <stdio.h> //Para printf();
+#include <stdlib.h>
+#include <signal.h>
+
+//Hacer un programa que imprima un mensaje cuando se pulse Ctrl-C.
+//El programa debe terminar tras pulsar Ctrl-C x veces.
+
+//Variables globales
+int num_pulsaciones = 0;
+void contar();
+int bucle = 0;
+
+main(int argc, char *argv[]){
+	
+	printf("\nPulsa Ctrl+c, para mostar el mensaje y te dira la condicion de salida\n");
+	
+	//Señal que advierta que presiono dichas teclas
+	//SIGNAL(NÚMERO_SEÑAL, FUNCIÓN)
+	signal(SIGINT, contar);
+	
+	//Bucle de Control	
+	while(bucle == 0);
+	
+	//Salida
+	exit(0);
+}
+
+void contar(){
+
+	num_pulsaciones++;
+	// Volvemos a asociar SIGINT con la función cortar() para la próxima vez que el usuario pulse CTRL+C.
+	signal(SIGINT, contar);
+	
+	if (num_pulsaciones == 3){
+		printf("\nPulsastes 3 veces, el numero de veces maximo, se cierra el programa\n");
+		bucle = 1;
+		exit(0);
+	}
+	
+	if (num_pulsaciones == 1) {
+		printf(" Has pulsado CTRL-C, hazlo 2 veces mas y saldras del programa.\n" );
+	}
+
+}
+
+
+</pre>
+
+</body>
+</html>

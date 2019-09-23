@@ -1,0 +1,3 @@
+# portfolio
+
+My first portfolio, a small portfolio of purposes for Keepcoding and the world ...
